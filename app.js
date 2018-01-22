@@ -10,6 +10,7 @@ var app = express();
 // app.use(express.static(__dirname+'/public'));
 // ///////////////////////////////////////////////////////
 // console.log("DB Start!!");
+mongoose.connect(process.env.MONGO_DB);
 
 var db = mongoose.connection;
 
