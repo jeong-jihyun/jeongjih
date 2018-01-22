@@ -18,5 +18,8 @@
   "homepage": "https://github.com/jeong-jihyun/jeongjih#readme",
   "devDependencies": {
     "express": "^4.16.2"
+  },
+  "dependencies": {
+    "ejs": "^2.5.7"
   }
 }
