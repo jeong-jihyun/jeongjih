@@ -10,7 +10,7 @@ var app = express();
 // app.use(express.static(__dirname+'/public'));
 // ///////////////////////////////////////////////////////
 console.log("DB Start!!");
-mongoose.connect('mongodb://jeongjih:Wjdrjsgh0717@ds111138.mlab.com:11138/azure0804');
+mongoose.connect('mongodb://');
 var db = mongoose.connection;
 
 db.once("open",function(){
