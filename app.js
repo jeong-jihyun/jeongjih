@@ -10,7 +10,6 @@ var app = express();
 // app.use(express.static(__dirname+'/public'));
 // ///////////////////////////////////////////////////////
 // console.log("DB Start!!");
-mongoose.connect('mongodb://jeongjih:Wjdrjsgh0717@ds111138.mlab.com:11138/azure0804');
 
 var db = mongoose.connection;
 
@@ -37,21 +36,13 @@ console.log(__dirname);
 var data = {count:0};
 
 app.get("/",function(req,res){
-	// data.count++;
 	Data.findOne({name:'myData'},function(err, data){
 		if (err) return console.log('Data Error:', err);
-		//if (!data){
-		//	Data.create({name:'myData', count:0},function(err, data){
-		//		if (err) return console.log('Data Error:', err);
-		//		console.log('Counter initalized :'+ data);
-		//	});
-		//}
 		data.count++;
 		data.save(function(err){
 			if (err) return console.log('Data Error: ', err);
 			res.render("first",data);
 		});
-		//
 	});	
 });
 
