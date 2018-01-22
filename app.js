@@ -9,8 +9,9 @@ var app = express();
 
 // app.use(express.static(__dirname+'/public'));
 // ///////////////////////////////////////////////////////
-console.log("DB Start!!");
+// console.log("DB Start!!");
 mongoose.connect('mongodb://');
+
 var db = mongoose.connection;
 
 db.once("open",function(){
@@ -21,6 +22,12 @@ db.on("error",function(err){
 	console.log("DB Error :", err);
 });
 
+var schema = mongoose.Schema({
+	name: String,
+	count:Number
+});
+
+var Data = mongoose.model('data',schema);
 // ///////////////////////////////////////////////////////
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, 'public')));
@@ -30,8 +37,22 @@ console.log(__dirname);
 var data = {count:0};
 
 app.get("/",function(req,res){
-	data.count++;
-	res.render("first",data);
+	// data.count++;
+	Data.findOne({name:'myData'},function(err, data){
+		if (err) return console.log('Data Error:', err);
+		//if (!data){
+		//	Data.create({name:'myData', count:0},function(err, data){
+		//		if (err) return console.log('Data Error:', err);
+		//		console.log('Counter initalized :'+ data);
+		//	});
+		//}
+		data.count++;
+		data.save(function(err){
+			if (err) return console.log('Data Error: ', err);
+			res.render("first",data);
+		});
+		//
+	});	
 });
 
 app.get("/reset",function(req,res){
@@ -52,3 +73,7 @@ app.get("/set/:num",function(req,res){
 app.listen(3000, function(){
 	console.log('Server On!');
 });
+
+function setCounter(req,res){
+	console.log('setCounter');
+}
