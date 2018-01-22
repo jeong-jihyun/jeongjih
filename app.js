@@ -10,7 +10,7 @@ var app = express();
 // app.use(express.static(__dirname+'/public'));
 // ///////////////////////////////////////////////////////
 // console.log("DB Start!!");
-mongoose.connect('mongodb://');
+mongoose.connect('mongodb://jeongjih:Wjdrjsgh0717@ds111138.mlab.com:11138/azure0804');
 
 var db = mongoose.connection;
 
@@ -56,24 +56,39 @@ app.get("/",function(req,res){
 });
 
 app.get("/reset",function(req,res){
-	data.count =0;
-	res.render("first",data);
+	setCounter(res,0);
 });
 
 app.get("/set/count",function(req,res){
-	if(req.query.count) data.count = req.query.count;
-	res.render("first",data);
+	if(req.query.count) setCounter(res,req.params.num);
+	else getCounter(res);
 });
 
 app.get("/set/:num",function(req,res){
-	data.count = req.params.num;
-	res.render("first", data);
+	if(req.params.num) setCounter(res,req.params.num);
+	else getCounter(res);
 });
 
 app.listen(3000, function(){
 	console.log('Server On!');
 });
 
-function setCounter(req,res){
+function setCounter(res,num){
 	console.log('setCounter');
+	Data.findOne({name:'myData'},function(err,data){
+		if (err) return console.log('Data Error:',err);
+		data.count= num;
+		data.save(function(err){
+			if(err) return console.log('Date Error:', err);
+			res.render('first',data);
+		});
+	});
+}
+
+function getCounter(res){
+	console.log('setCounter');
+	Data.findOne({name:'myData'},function(err,data){
+		if (err) return console.log('Data Error:',err);
+		res.render('first',data);
+	});
 }
