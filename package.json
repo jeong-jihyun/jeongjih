@@ -20,6 +20,7 @@
     "express": "^4.16.2"
   },
   "dependencies": {
-    "ejs": "^2.5.7"
+    "ejs": "^2.5.7",
+    "mongoose": "^5.0.1"
   }
 }

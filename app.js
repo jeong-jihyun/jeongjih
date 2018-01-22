@@ -1,11 +1,27 @@
 var express = require('express');
 var path = require('path');
+var mongoose = require('mongoose');
+
 var app = express();
 // app.get('/',function(req,res){
 	// res.send('Hello World!');
 // });
 
 // app.use(express.static(__dirname+'/public'));
+// ///////////////////////////////////////////////////////
+console.log("DB Start!!");
+mongoose.connect('mongodb://jeongjih:Wjdrjsgh0717@ds111138.mlab.com:11138/azure0804');
+var db = mongoose.connection;
+
+db.once("open",function(){
+	console.log("DB Connected!");
+});
+
+db.on("error",function(err){
+	console.log("DB Error :", err);
+});
+
+// ///////////////////////////////////////////////////////
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, 'public')));
 
