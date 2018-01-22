@@ -1,0 +1,23 @@
+<div class="show">
+	<h3><%= data.title %></h3>
+	<div class="time">Create at <br>
+	<%= data.createAt.toLocaleDateString() %><br>
+	<%= data.createAt.toLocaleDateString() %>
+	</div>
+
+	<% if (data.updateAt) {%>
+	<div class="time">Updated at <br>
+	<%= data.updateAt.toLocaleDateString() %><br>
+	<%= data.updateAt.toLocaleDateString() %>
+	</div>	
+	<% }%>
+
+	<p class="body"><%= data.body%></p>
+	<div class="tools">
+		<a href="/posts/<%= data._id%>/edit"><button>Edit</button></a>
+	</div>
+	<form class="btn_delete" action="/posts/<%= data._id%>?_method=delete" method="post">
+		<button type="submit">Delete</button>
+	</form>	
+	<a href="/posts"><button>Back</button></a>
+</div>
