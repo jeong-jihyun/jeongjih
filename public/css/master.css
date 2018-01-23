@@ -1,0 +1,123 @@
+body{
+	font-family: "맑은 고딕"
+}
+.posts h2{
+	text-align: center;
+}
+ul li{
+	list-style: none;
+}
+.posts .index ul li{
+	padding: 4px;
+	list-style: none;
+	font-size: 12px;
+}
+.posts .index ul li > span {
+	width:90px;
+	float: right;
+}
+.posts .index ul li:nth-child(odd){
+	background-color: #75CEF7;
+}
+.posts .index ul li:nth-child(even){
+	background-color: #A8D8EF;
+}
+.posts .index ul li.header{
+	background-color: #CCCCCC;
+}
+.posts .index a > button{
+	width:80px;
+	height:30px;
+	font-family: "맑은 고딕"
+}
+.posts .edit h3{
+	text-align: center;
+}
+.posts .edit .posts_form label{
+	width:120px;
+	height:30px;
+}
+
+.posts .show .time{
+	border: 1pt solid #efefef;
+	padding :4px;
+	background-color: #efefef;
+	font-family: "맑은 고딕"
+	font-size:11px;
+}
+
+.posts .show .body{
+	width:100%;
+	border: 1pt solid #efefef;
+	height: 300px;
+}
+.posts .show .tools_box{
+	width:100%;
+}
+.posts .show .tools_box ul{
+	width:100%;
+}
+.posts.show .tools_box ul li.left{
+	text-align: left;
+}
+.posts .show .tools_box ul li.right{
+	text-align: right;
+}
+.posts .show .tools a > button{
+	width:80px;
+	height:30px;
+	font-family: "맑은 고딕";
+	float:left;
+}
+.posts .show .btn_delete  > button{
+	width:80px;
+	height:30px;
+	font-family: "맑은 고딕";
+	float:left;
+}
+
+.posts .show .back  > button{
+	width:80px;
+	height:30px;
+	font-family: "맑은 고딕";
+	float:left;
+}
+.posts .new label{
+	width:120px;
+	height: 30px;
+	font-family: "맑은 고딕";
+}
+.posts .edit label{
+	width:120px;
+	height: 30px;
+	font-family: "맑은 고딕";
+}
+.posts .new input[type='text']{
+	width:100%;
+	height: 25px;
+}
+
+.posts .edit input[type='text']{
+	width:100%;
+	height: 25px;
+}
+.posts .new textarea{
+	width:100%;
+	height:200px;
+}
+
+.posts .edit textarea{
+	width:100%;
+	height:200px;
+}
+a > button{
+	width:80px;
+	height:30px;
+	font-family: "맑은 고딕"
+}
+
+form > button{
+	width:80px;
+	height:30px;
+	font-family: "맑은 고딕"
+}
