@@ -1,19 +1,30 @@
-var express = require('express'); // sudo npm install --save express
-var path = require('path');
-var mongoose = require('mongoose'); // sudo npm install --save mongoose
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override'); // sudo npm install --save method-override
+var express 		= require('express'); 
+var app 			= express();
+var path 			= require('path');
+var mongoose 		= require('mongoose'); 
+// restful json 통신
+var bodyParser 		= require('body-parser');
+var methodOverride 	= require('method-override'); 
 
-var app = express();
+var passport 		= require('passport');
+var session 		= require('express-session');
+var flash 			= require('connect-flash');
+var async			= require('async');
+// ///////////////////////////////////////////////////////
+// sudo npm install --save express
+// sudo npm install --save mongoose
+// sudo npm install --save method-override
+// sudo npm i passport passport-local express-session connect-flash async --save-dev
 // sudo npm install ejs --save
 // sudo npm install -g nodemon
 // sudo npm install -save body-parser
+// ///////////////////////////////////////////////////////
+
 
 // app.get('/',function(req,res){
 	// res.send('Hello World!');
 // });
-
-// app.use(express.static(__dirname+'/public'));
+// 
 // ///////////////////////////////////////////////////////
 // console.log("DB Start!!");
 mongoose.connect(process.env.MONGO_DB);
@@ -27,16 +38,9 @@ db.once("open",function(){
 db.on("error",function(err){
 	console.log("DB Error :", err);
 });
-
-var schema = mongoose.Schema({
-	name: String,
-	count:Number
-});
-
-var cData = mongoose.model('data',schema);
-
 // ///////////////////////////////////////////////////////
 app.set("view engine","ejs");
+// app.use(express.static(__dirname+'/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 // bodyParser
 app.use(bodyParser.json());
@@ -46,17 +50,32 @@ app.use(methodOverride("_method"));
 
 
 console.log(__dirname);
+// ///////////////////////////////////////////////////////
 // model setting[s]
-var postSchema = mongoose.Schema({
+// board model
+var postSchema 	= mongoose.Schema({
 			title: {type:String, required:true},
 			body: {type:String, required:true},
 			createAt: {type:Date, default:Date.now},
 			updateAt: Date
 		});
-var pPost = mongoose.model('post', postSchema);
-
+var pPost 		= mongoose.model('post', postSchema);
+// page counter model
+var countSchema = mongoose.Schema({
+	name: String,
+	count:Number
+});
+var cData 		= mongoose.model('data',countSchema);
+// user model
+var userSchema	= mongoose.Schema({
+	email: {type:String , required:true, unique:true},
+	nickname:{type:String , required:true, unique:true},
+	password:{type:String , required:true},
+	createdAt:{type:Date , default: Date.now}
+});
+var uData 		= mongoose.model('user',userSchema);
 // model setting[e]
-
+// ///////////////////////////////////////////////////////
 // route setting[s]
 app.get('/posts',function(req,res){
 	pPost.find({}).sort('-createAt').exec(function(err,posts){
