@@ -27,18 +27,22 @@
 			<% }%>
 
 			<p class="body"><%= data.body%></p>
+			<div class="float_right">Auther: <%= data.author.nickname %></div>
 			<div class="tools_box">
 				<ul>
 					<li class="left">
+					<% if (user && user.equals(data.author._id)) {%>
 						<div class="tools">
 							<a href="/posts/<%= data._id%>/edit"><button>Edit</button></a>
 						</div>						
-
+					<% }%>
 					</li>
 					<li  class="right">
+					<% if (user && user.equals(data.author._id)) {%>
 						<form class="btn_delete" action="/posts/<%= data._id%>?_method=delete" method="post">
 							<button type="submit">Delete</button>
 						</form>	
+					<% }%>
 						<a href="/posts" class="back"><button>Back</button></a>
 					</li>
 				</ul>

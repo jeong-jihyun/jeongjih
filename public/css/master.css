@@ -111,13 +111,12 @@ ul li{
 	height:200px;
 }
 a > button{
-	width:80px;
 	height:30px;
 	font-family: "맑은 고딕"
+	margin:5px;
 }
 
 form > button{
-	width:80px;
 	height:30px;
 	font-family: "맑은 고딕"
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<% include ../partials/head %>
+</head>
+<body>
+	<header>
+		<% include ../partials/header %>
+	</header>
+	<div class="show">
+		<!-- main start -->
+		<!-- views/posts/index.ejs -->
+		<div>
+			<h3>User Info</h3>
+			<div class="content">
+				<p class="user_info">Email<small> : <%= user.email %></small>
+				<p class="user_info">NickName<small> : <%= user.nickname %></small>
+				<a href="/users/<%= user.id%>/edit"><button>Edit</button>
+			</div>
+			<a href="javascript:history.back()"><button>Back</button></a>
+		</div>
+		<!-- main end -->
+	</div>
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+</body>
+</html>
