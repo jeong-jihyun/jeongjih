@@ -46,6 +46,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
+app.use(flash());
+
+// User Information
+app.use(session({secret:'MySecret'}));
+app.use(passport.initialize());
+app.use(passport.session());
+// ///////////////////////////////////////////////////////
+// passport[s]
+passport.serializeUser(function(user,done){
+	done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+	User.findById(id, function(err, user){
+		done(err, user);
+	});
+});
+// passport[e]
 // ///////////////////////////////////////////////////////
 
 
